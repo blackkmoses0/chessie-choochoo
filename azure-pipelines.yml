@@ -37,11 +37,14 @@ steps:
     verbose: false
     customCommand: 'run build'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: $(ArtifactName)'
+- task: AzureWebApp@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/dist/$(ProjectName)'
-    ArtifactName: '$(ArtifactName)'
+    azureSubscription: 'Free Trial(2fa87eeb-98ea-4c78-ae51-ec3ef97a6473)'
+    appType: 'webAppLinux'
+    appName: 'chessie-choochoo'
+    package: '$(System.DefaultWorkingDirectory)/dist/chessie-choochoo'
+    runtimeStack: 'NODE|10-lts'
+    startUpCommand: 'npm run start'
 
 
 
