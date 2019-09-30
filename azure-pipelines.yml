@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 variables:
-  SolutionToBuild: 'chessie-choochoo'
+  SolutionToBuild: '$(System.DefaultWorkingDirectory)'
   ArtifactName: 'chessie-choochoo'
   ProjectName: 'chessie-choochoo'
 
@@ -19,13 +19,13 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(SolutionToBuild)'
+    workingDir: '$(System.DefaultWorkingDirectory)'
 
 - task: Npm@1
   displayName: 'npm test'
   inputs:
     command: custom
-    workingDir: '$(SolutionToBuild)'
+    workingDir: '$(System.DefaultWorkingDirectory)'
     verbose: false
     customCommand: 'run test'
 
@@ -33,14 +33,14 @@ steps:
   displayName: 'npm build'
   inputs:
     command: custom
-    workingDir: '$(SolutionToBuild)'
+    workingDir: '$(System.DefaultWorkingDirectory)'
     verbose: false
     customCommand: 'run build'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: $(ArtifactName)'
   inputs:
-    PathtoPublish: '$(SolutionToBuild)/dist/$(ProjectName)'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/dist/$(ProjectName)'
     ArtifactName: '$(ArtifactName)'
 
 
