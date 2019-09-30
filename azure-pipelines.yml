@@ -30,14 +30,14 @@ steps:
     command: custom
     workingDir: '$(BuildDirectory)'
     verbose: false
-    customCommand: 'npm run build'
+    customCommand: 'npm run build --prod'
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '2fa87eeb-98ea-4c78-ae51-ec3ef97a6473'
+    azureSubscription: '$(AZURE_SUBSCRIPTION)'
     appType: 'webAppLinux'
     appName: 'chessie-choochoo'
-    package: '$(BuildDirectory)/dist/$(ProjectName)'
+    package: '$(System.DefaultWorkingDirectory)/dist/chessie-choochoo'
     runtimeStack: 'NODE|10-lts'
     startUpCommand: 'npm run start'
 
