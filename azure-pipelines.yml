@@ -19,5 +19,15 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-    mkdir azagent;cd azagent;curl -fkSL -o vstsagent.tar.gz https://vstsagentpackage.azureedge.net/agent/2.155.1/vsts-agent-linux-x64-2.155.1.tar.gz;tar -zxvf vstsagent.tar.gz; if [ -x "$(command -v systemctl)" ]; then ./config.sh --deploymentgroup --deploymentgroupname "chessie-choochoo" --acceptteeeula --agent $HOSTNAME --url https://dev.azure.com/andrewevans0102/ --work _work --projectname 'first project' --runasservice; sudo ./svc.sh install; sudo ./svc.sh start; else ./config.sh --deploymentgroup --deploymentgroupname "chessie-choochoo" --acceptteeeula --agent $HOSTNAME --url https://dev.azure.com/andrewevans0102/ --work _work --projectname 'first project'; ./run.sh; fi
+    mkdir azagent;
+    cd azagent;
+    curl -fkSL -o vstsagent.tar.gz https://vstsagentpackage.azureedge.net/agent/2.155.1/vsts-agent-linux-x64-2.155.1.tar.gz;
+    tar -zxvf vstsagent.tar.gz; 
+    if [ -x "$(command -v systemctl)" ]; 
+    then ./config.sh --deploymentgroup --deploymentgroupname "chessie-choochoo" --acceptteeeula --agent $HOSTNAME --url https://dev.azure.com/andrewevans0102/ --work _work --projectname 'first project' --runasservice; 
+    sudo ./svc.sh install; 
+    sudo ./svc.sh start; 
+    else ./config.sh --deploymentgroup --deploymentgroupname "chessie-choochoo" --acceptteeeula --agent $HOSTNAME --url https://dev.azure.com/andrewevans0102/ --work _work --projectname 'first project'; 
+    ./run.sh; 
+    fi 
   displayName: 'npm install and build'
