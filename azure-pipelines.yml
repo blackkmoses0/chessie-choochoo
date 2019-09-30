@@ -22,7 +22,7 @@ steps:
     command: custom
     workingDir: '$(BuildDirectory)'
     verbose: false
-    customCommand: 'npm run test'
+    customCommand: 'run test'
 
 - task: Npm@1
   displayName: 'npm build'
@@ -30,7 +30,7 @@ steps:
     command: custom
     workingDir: '$(BuildDirectory)'
     verbose: false
-    customCommand: 'npm run build --prod'
+    customCommand: 'run build --prod'
 
 - task: AzureWebApp@1
   inputs:
@@ -39,7 +39,7 @@ steps:
     appName: 'chessie-choochoo'
     package: '$(System.DefaultWorkingDirectory)/dist/chessie-choochoo'
     runtimeStack: 'NODE|10-lts'
-    startUpCommand: 'npm run start'
+    startUpCommand: 'run start'
 
 
 
