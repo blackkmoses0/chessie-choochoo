@@ -1,10 +1,5 @@
-# Node.js with Angular
-# Build a Node.js project that uses Angular.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 variables:
-  SolutionToBuild: '$(System.DefaultWorkingDirectory)'
+  BuildDirectory: '$(System.DefaultWorkingDirectory)'
   ArtifactName: 'chessie-choochoo'
   ProjectName: 'chessie-choochoo'
 
@@ -19,30 +14,30 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(System.DefaultWorkingDirectory)'
+    workingDir: '$(BuildDirectory)'
 
-# - task: Npm@1
-#   displayName: 'npm test'
-#   inputs:
-#     command: custom
-#     workingDir: '$(System.DefaultWorkingDirectory)'
-#     verbose: false
-#     customCommand: 'run test'
+- task: Npm@1
+  displayName: 'npm test'
+  inputs:
+    command: custom
+    workingDir: '$(BuildDirectory)'
+    verbose: false
+    customCommand: 'npm run test'
 
 - task: Npm@1
   displayName: 'npm build'
   inputs:
     command: custom
-    workingDir: '$(System.DefaultWorkingDirectory)'
+    workingDir: '$(BuildDirectory)'
     verbose: false
-    customCommand: 'run build'
+    customCommand: 'npm run build'
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Free Trial(2fa87eeb-98ea-4c78-ae51-ec3ef97a6473)'
+    azureSubscription: '2fa87eeb-98ea-4c78-ae51-ec3ef97a6473'
     appType: 'webAppLinux'
     appName: 'chessie-choochoo'
-    package: '$(System.DefaultWorkingDirectory)/dist/chessie-choochoo'
+    package: '$(BuildDirectory)/dist/$(ProjectName)'
     runtimeStack: 'NODE|10-lts'
     startUpCommand: 'npm run start'
 
