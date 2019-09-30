@@ -1,0 +1,150 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.title > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.tab-label {
+  margin-right: 8px;
+}
+
+.route-information {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrival-times {
+  display: flex;
+  flex-direction: column;
+}
+
+.station-name {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1em;
+  // transform: rotate(-20grad);
+}
+
+.station-name > button {
+  display: flex;
+  align-items: center;
+  margin-left: 0.25em;
+  color: lightblue;
+  // transform: rotate(315);
+  // transform: rotate(-50grad);
+}
+
+.route-name {
+  padding: 0.25em;
+  width: 15em;
+  border-radius: 2em;
+}
+
+i {
+  font-size: 2em;
+  background-color: lightblue;
+}
+
+button {
+  border-radius: 20em;
+}
+
+.arrival-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.arrival-time {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: 'Pacifico', cursive;
+}
+
+.arrival-title {
+  font-size: 1.25em;
+}
+
+.arrival-value {
+  margin-left: 1em;
+  width: 10em;
+}
+
+.arrival-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrival-output {
+  margin: 1em;
+  border-bottom: solid;
+}
+
+button {
+  background-color: black;
+  color: lightblue;
+  font-family: 'Pacifico', cursive;
+}
+
+.station-label {
+  font-family: 'Pacifico', cursive;
+}
+
+.station-select {
+  font-family: 'Pacifico', cursive;
+}
+
+.station-option {
+  font-family: 'Pacifico', cursive;
+}
+
+.tab-text {
+  font-family: 'Pacifico', cursive;
+}
+
+.route-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+  height: 10em;
+  margin: 1em;
+  border-radius: 50%;
+}
+
+.picture-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.back-button > button {
+  font-size: 2em;
+}

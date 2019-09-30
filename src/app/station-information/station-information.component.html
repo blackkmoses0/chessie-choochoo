@@ -1,0 +1,33 @@
+<div class="title">Station Information</div>
+<div class="station-picture">
+  <div *ngIf="stationInformation !== undefined" class="information-container">
+    <div>{{ stationInformation.Name }}</div>
+    <div>Lat: {{ stationInformation.Lat }}</div>
+    <div>Long: {{ stationInformation.Lon }}</div>
+    <div class="address-container">
+      <div class="address">{{ stationInformation.Address.Street }}</div>
+      <div class="address">
+        {{ stationInformation.Address.City }},
+        {{ stationInformation.Address.State }}
+        {{ stationInformation.Address.Zip }}
+      </div>
+    </div>
+  </div>
+  <img src="../assets/station_information.png" class="chessie-picture" />
+</div>
+<div class="title">Station Times</div>
+<div *ngIf="stationHours !== undefined" class="time-container">
+  <div *ngFor="let stationHour of stationHours">
+    <div class="day-container">
+      <p>{{ stationHour.day }}</p>
+      <ul>
+        <li>Opening: {{ stationHour.opening }}</li>
+        <li>First Trains: {{ stationHour.firstTrain }}</li>
+        <li>Last Trains: {{ stationHour.lastTrain }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="back-button">
+  <button mat-raised-button color="warn" (click)="back()">back</button>
+</div>

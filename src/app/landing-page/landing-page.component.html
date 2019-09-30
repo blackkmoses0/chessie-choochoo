@@ -1,0 +1,30 @@
+<div class="title">
+  <h1>Chessie ChooChoo</h1>
+  <p>Ride the DC Metro with Chessie!</p>
+</div>
+<div class="select-line">
+  <mat-form-field>
+    <mat-label class="select-label">metro line</mat-label>
+    <mat-select [(value)]="selectedLine" class="line-name">
+      <mat-option
+        *ngFor="let metroLine of metroLines"
+        [value]="metroLine.abbv"
+        class="option-label"
+      >
+        <div class="line-name">
+          {{ metroLine.name }}
+        </div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="enter-button">
+  <button mat-raised-button (click)="goToHomePage()">Start Here</button>
+</div>
+<div class="train-animation">
+  <div class="train-toot">Toot toot!</div>
+  <img src="../assets/train.png" />
+</div>
+<div class="chessie-container">
+  <img src="../assets/landing_page.png" class="chessie-image" />
+</div>
