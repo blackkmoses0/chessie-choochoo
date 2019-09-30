@@ -3,6 +3,11 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
+variables:
+  SolutionToBuild: 'chessie-choochoo'
+  ArtifactName: 'chessie-choochoo'
+  ProjectName: 'chessie-choochoo'
+
 trigger:
 - master
 
@@ -10,21 +15,35 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
-
-- task: AzureWebApp@1
+- task: Npm@1
   inputs:
-    azureSubscription: 'chessie-choochoo'
-    appName: 'chessie-choochoo'
-    package: '$(System.DefaultWorkingDirectory)'
-    customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
-  displayName: 'deploy'
+    command: 'install'
+    workingDir: '$(SolutionToBuild)'
+
+- task: Npm@1
+  displayName: 'npm test'
+  inputs:
+    command: custom
+    workingDir: '$(SolutionToBuild)'
+    verbose: false
+    customCommand: 'run test'
+
+- task: Npm@1
+  displayName: 'npm build'
+  inputs:
+    command: custom
+    workingDir: '$(SolutionToBuild)'
+    verbose: false
+    customCommand: 'run build'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: $(ArtifactName)'
+  inputs:
+    PathtoPublish: '$(SolutionToBuild)/dist/$(ProjectName)'
+    ArtifactName: '$(ArtifactName)'
+
+
+
+
+
